@@ -39,7 +39,7 @@ public class Square {
 	public void explored() {
 		type = '.';
 	}
-	public void finalpath() {
+	public void finalPath() {
 		type = 'x';
 	}
 
@@ -54,6 +54,6 @@ public class Square {
 	}
 
 	public String toString() {
-		return new String(type) + "(" + col + ", " + row + ")";
+		return "(" + col + ", " + row + ") " + type;
 	}
 }
