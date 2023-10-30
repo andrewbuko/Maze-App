@@ -26,8 +26,11 @@ public class Maze {
             for (int row = 0; row < numRows; row++) {
                 for (int col = 0; col < numCols; col++) {
                      maze[row][col] = new Square(row,col,in.nextInt());
+                     if(maze[row][col].getType() == null)
+                        return false;
                 }
             }
+            return true;
         } catch (FileNotFoundException e) {
             System.out.println("Cannot open: " + fileName);
             return false;
@@ -36,9 +39,29 @@ public class Maze {
     //return an ArrayList of the Square neighbors of the parameter Square sq. There will be at most four of these (to the North, East, South, and West) and you should list them in that order.
     //If the square is on a border, skip over directions that are out of bounds of the maze. Don't be adding in null values.
     ArrayList<Square> getNeighbors(Square sq)
+    {
+        ArrayList<Square> neighbors = new ArrayList<Square>;
+
+    }
     
     Square getStart()
+    {
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                if(maze[row][col].getType() == 'S')
+                    return maze[row][col];
+            }
+        }
+    }
     Square getFinish()
+    {
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                if(maze[row][col].getType() == 'E')
+                    return maze[row][col];
+            }
+        }
+    }
     /*
      * Return the maze back to the initial state after loading. 
      * Erase any marking on squares (e.g., visited or worklist) but keep the layout.
