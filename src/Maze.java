@@ -41,7 +41,19 @@ public class Maze {
     ArrayList<Square> getNeighbors(Square sq)
     {
         ArrayList<Square> neighbors = new ArrayList<Square>;
-
+        if (sq.getRow() < numRows-1 && maze[sq.getRow() + 1][sq.getCol()].getType() != '#'){
+            neighbors.add(maze[sq.getRow() + 1][sq.getCol()]);
+        }
+        if (sq.getCol()  < numCols-1 && maze[sq.getRow()][sq.getCol() + 1].getType() != '#'){
+            neighbors.add(maze[sq.getRow() + 0][sq.getCol()+1]);
+        }
+        if (sq.getRow() > 0 && maze[sq.getRow() - 1][sq.getCol()].getType() != '#'){
+            neighbors.add(maze[sq.getRow() -1][sq.getCol()]);
+        }
+        if (sq.getCol() > 0 && maze[sq.getRow()][sq.getCol() - 1].getType() != '#'){
+            neighbors.add(maze[sq.getRow() ][sq.getCol()-1]);
+        }
+        return neighbors
     }
     
     Square getStart()
@@ -68,8 +80,26 @@ public class Maze {
     One way you might do this is by giving each Square a reset() method too, and then just loop through the squares and asking them to reset themselves.
      */
     void reset()
+    {
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                maze[row][col] = null;
+            }
+        }
+        numRows = null;
+        numCols = null;
+    }
 
 
     String toString()
-    
+    {
+        String mazee = "";
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                mazee+=maze[row][col].getType();
+            }
+            mazee+="\n";
+        }
+        return mazee;
+    }
 }
