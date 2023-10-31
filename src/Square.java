@@ -30,6 +30,9 @@ public class Square {
 				break;
 			case 3:
 				this.type = 'E';
+				break;
+			default:
+				this.type = null;	
 		}
 	}
 
