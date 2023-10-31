@@ -32,7 +32,7 @@ public class Square {
 				this.type = 'E';
 				break;
 			default:
-				this.type = null;	
+				this.type = '\0';	
 		}
 	}
 

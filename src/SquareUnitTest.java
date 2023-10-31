@@ -7,6 +7,7 @@ public class SquareUnitTest {
 		System.out.println(sq.getCol());
 		System.out.println(sq.getRow());
 		System.out.println(sq.getType());
+
 		sq.explored();
 		System.out.println(sq);
 		sq.putWorkList();

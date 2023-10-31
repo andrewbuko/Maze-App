@@ -1,3 +1,7 @@
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
 public class Maze {
     private int numRows;
     private int numCols;
@@ -9,7 +13,7 @@ public class Maze {
 
 
     //load the maze that is contained in the file named fname. The format of the file is described above. As a quick refresher, here is how you can declare a 2D array and fill it:
-     //If you encounter a problem while reading in the file, you should return false to indicate that it failed. Returning true indicates that you have now loaded the file from disk successfully.
+    //If you encounter a problem while reading in the file, you should return false to indicate that it failed. Returning true indicates that you have now loaded the file from disk successfully.
     //Be sure to catch the exception that is raised if the user specifies an incorrect file and print out an appropriate error message when this occurs and return false. Don't just let the program crash dumping the stack trace to the user.
     public boolean loadMaze(String fname)
     {
@@ -25,22 +29,21 @@ public class Maze {
 
             for (int row = 0; row < numRows; row++) {
                 for (int col = 0; col < numCols; col++) {
-                     maze[row][col] = new Square(row,col,in.nextInt());
-                     if(maze[row][col].getType() == null)
-                        return false;
+                    maze[row][col] = new Square(row, col, in.nextInt());
+                    if( maze[row][col].getType() == '\0') return false;
                 }
             }
             return true;
         } catch (FileNotFoundException e) {
-            System.out.println("Cannot open: " + fileName);
+            System.out.println("Cannot open: " + fname);
             return false;
         }
     }         
     //return an ArrayList of the Square neighbors of the parameter Square sq. There will be at most four of these (to the North, East, South, and West) and you should list them in that order.
     //If the square is on a border, skip over directions that are out of bounds of the maze. Don't be adding in null values.
-    ArrayList<Square> getNeighbors(Square sq)
+    public ArrayList<Square> getNeighbors(Square sq)
     {
-        ArrayList<Square> neighbors = new ArrayList<Square>;
+        ArrayList<Square> neighbors = new ArrayList<>();
         if (sq.getRow() < numRows-1 && maze[sq.getRow() + 1][sq.getCol()].getType() != '#'){
             neighbors.add(maze[sq.getRow() + 1][sq.getCol()]);
         }
@@ -53,19 +56,20 @@ public class Maze {
         if (sq.getCol() > 0 && maze[sq.getRow()][sq.getCol() - 1].getType() != '#'){
             neighbors.add(maze[sq.getRow() ][sq.getCol()-1]);
         }
-        return neighbors
+        return neighbors;
     }
     
-    Square getStart()
+    public Square getStart()
     {
-        for (int row = 0; row < numRows; row++) {
-            for (int col = 0; col < numCols; col++) {
+        for (int row = 0; row < this.numRows; row++) {
+            for (int col = 0; col < this.numCols; col++) {
                 if(maze[row][col].getType() == 'S')
                     return maze[row][col];
             }
         }
+        return null;
     }
-    Square getFinish()
+    public Square getFinish()
     {
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
@@ -73,25 +77,26 @@ public class Maze {
                     return maze[row][col];
             }
         }
+        return null;
     }
     /*
      * Return the maze back to the initial state after loading. 
      * Erase any marking on squares (e.g., visited or worklist) but keep the layout.
     One way you might do this is by giving each Square a reset() method too, and then just loop through the squares and asking them to reset themselves.
      */
-    void reset()
+    public void reset()
     {
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
                 maze[row][col] = null;
             }
         }
-        numRows = null;
-        numCols = null;
+        numRows = 0;
+        numCols = 0;
     }
 
 
-    String toString()
+    public String toString()
     {
         String mazee = "";
         for (int row = 0; row < numRows; row++) {
