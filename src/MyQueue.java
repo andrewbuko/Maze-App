@@ -1,6 +1,6 @@
 import java.util.NoSuchElementException;
 
-public class MyQueue implements StackADT{
+public class MyQueue implements QueueADT{
 	/* 
 	 * An implementation of the provided QueueADT interface 
 	 * that is capable of storing an arbitrarily large amount 
