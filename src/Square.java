@@ -3,6 +3,7 @@
 public class Square {
 	private int row, col;
 	private char type;
+	public Square prev;
 
 	/**
 	 *     _ - empty space (0)
@@ -16,6 +17,7 @@ public class Square {
 	 */
 
 	public Square(int row, int col, int type) {
+		this.prev = null;
 		this.row = row;
 		this.col = col;
 		switch (type) {
