@@ -6,7 +6,7 @@ public class MazeTest {
 
 		Maze maze = new Maze();
 
-		maze.loadMaze("src\\maze-1");
+		maze.loadMaze("src/maze-1");
 		System.out.println(maze);
 		System.out.println("getstart: "+ maze.getStart());
 		System.out.println("getfinish: "+ maze.getFinish());
