@@ -30,14 +30,13 @@ public abstract class MazeSolver {
 	//A path from the start to the exit has been found; OR
 	//You determine there is no such path (worklist is now empty)
 	public boolean isSolved() {
-		return isEmpty() || !getPath().equals("Not solved yet");
+		return isEmpty() || !getPath().equals("");
 	}
 
 	//Returns either a string of the solution path as a list of coordinates
 	//[i,j] from the start to the exit or a message indicating no such path exists
 	//If the maze isn't solved, you should probably return a message indicating such.
 	public String getPath() {
-		if (maze.getFinish().prev == null) return "Not solved yet";
 		
 		String path = "";
 

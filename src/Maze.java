@@ -30,9 +30,11 @@ public class Maze {
             for (int row = 0; row < numRows; row++) {
                 for (int col = 0; col < numCols; col++) {
                     maze[row][col] = new Square(row, col, in.nextInt());
+
                     if( maze[row][col].getType() == '\0') return false;
                 }
             }
+            System.out.println(this.toString());
             return true;
         } catch (FileNotFoundException e) {
             System.out.println("Cannot open: " + fname);
