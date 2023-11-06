@@ -2,10 +2,10 @@ import java.util.*;
 
 public abstract class MazeSolver {
 
-	private Maze maze;
-
-	//create an empty worklist
-	abstract void makeEmpty();
+    private Maze maze;
+  
+  	//create an empty worklist
+  	abstract void makeEmpty();
 
 	//return true if the worklist is empty
 	abstract boolean isEmpty();
@@ -32,44 +32,64 @@ public abstract class MazeSolver {
 	public boolean isSolved() {
 		return isEmpty() || !getPath().equals("Not solved yet");
 	}
-	
-	//Returns either a string of the solution path as a list of coordinates [i,j] from the start to the exit or a message indicating no such path exists
+
+	//Returns either a string of the solution path as a list of coordinates
+	//[i,j] from the start to the exit or a message indicating no such path exists
 	//If the maze isn't solved, you should probably return a message indicating such.
 	public String getPath() {
+		if (maze.getFinish().prev == null) return "Not solved yet";
+		
 		String path = "";
-		for(){
 
+		//find last square
+		//trace through previous squares from the last sq until you reach beginning
+		//append them to "path"
+		ArrayList<Square> pathlist = new ArrayList<>();
+		Square currentsq = maze.getFinish();
+		while(currentsq != null) {
+			pathlist.add(currentsq);
+			currentsq.finalPath();
+			currentsq = currentsq.prev;
+		}
 
-			path += step().toString();
+		Square sq;
+		for (int i = pathlist.size() - 1; i >= 0; i--) {
+			sq = pathlist.get(i);
+			path += sq.toString();
 		}
 		
+		return path;
 	}
-	
-	public Square step() {
-		if(isEmpty()) return null;
 
+	public Square step() {
+		//worklist=empty, so there's "no such path"
+		if(isEmpty()) return null; 
+
+		//otherwise grab the next square to compute
 		Square currentsq = next();
-		if (currentsq == maze.getFinish()) {
-			System.out.println(getPath()); 
-		} else {
+
+		//if the square being processed is not the finish, put neighbors into workload
+		if (currentsq != maze.getFinish()) {
+			
 			ArrayList<Square> neighbors = maze.getNeighbors(currentsq);
 			Square neighbor;
 			for (int i = 0; i < neighbors.size(); i++) {
 				neighbor = neighbors.get(i);
-				neighbor.prev = currentsq; //record the last square visited
-				neighbor.putWorkList(); //changes the sq's char status to reflect it being on the worklist
-				add(neighbor); //actually put the sq in a worklist
+				//make sure neighbors aren't walls or something
+				if(neighbor.getType() == '_' || neighbor.getType() == 'E') {
+					neighbor.prev = currentsq; //make sure neighbor squares know "parent" square
+					neighbor.putWorkList(); //changes neighbors' char status to reflect it being on the worklist
+					add(neighbor); //actually put the sq in a worklist 
+				}
 			}
-			currentsq.explored();
+			currentsq.explored(); //mark current square as explored
 		}
 		return currentsq;
 	}
 
 	//repeatedly call step() until you get to the exit square or the worklist is empty.
 	public void solve() {
-		while (!isEmpty() && this.next().type() != 'E')
-		{
-			this.step();
-		}
+		while (!isEmpty() || maze.getFinish().prev == null) 
+			step();
 	}
 }

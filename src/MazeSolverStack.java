@@ -2,7 +2,7 @@ public class MazeSolverStack extends MazeSolver {
     //create an empty worklist
     private MyStack stack;
 
-    public MazeSolverQueue(Maze maze)
+    public MazeSolverStack(Maze maze)
     {
         super(maze);
         stack = new MyStack();

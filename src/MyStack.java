@@ -8,20 +8,19 @@ import java.util.*;
 
 
 public class MyStack{
-    private ArrayList<Square> squares = new ArrayList<Square>();
+    private ArrayList<Square> squares;
     /**
      * Add an item onto the stack
      * @param item the data item to add (of type T)
      */
 
-     private Node first;
 
     /**
      * Constructs an empty stack.
     */
     public MyStack()
     {
-        first = null;
+        squares = new ArrayList<Square>();
     }
 
     /**
