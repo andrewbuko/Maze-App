@@ -30,6 +30,7 @@ public abstract class MazeSolver {
 	//A path from the start to the exit has been found; OR
 	//You determine there is no such path (worklist is now empty)
 	public boolean isSolved() {
+		System.out.println("isempty "+isEmpty()+"!getpath is equal to . nothing"+!getPath().equals(""));
 		return isEmpty() || !getPath().equals("");
 	}
 
@@ -61,6 +62,7 @@ public abstract class MazeSolver {
 	}
 
 	public Square step() {
+		System.out.println("Called step.");
 		//worklist=empty, so there's "no such path"
 		if(isEmpty()) return null; 
 
@@ -69,6 +71,8 @@ public abstract class MazeSolver {
 
 		//if the square being processed is not the finish, put neighbors into workload
 		if (currentsq != maze.getFinish()) {
+			
+		System.out.println("Retrieved neighbors");
 			
 			ArrayList<Square> neighbors = maze.getNeighbors(currentsq);
 			Square neighbor;
@@ -79,6 +83,8 @@ public abstract class MazeSolver {
 					neighbor.prev = currentsq; //make sure neighbor squares know "parent" square
 					neighbor.putWorkList(); //changes neighbors' char status to reflect it being on the worklist
 					add(neighbor); //actually put the sq in a worklist 
+					
+		System.out.println("neightbors should be in worklist.");
 				}
 			}
 			currentsq.explored(); //mark current square as explored

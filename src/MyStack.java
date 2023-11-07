@@ -29,7 +29,7 @@ public class MyStack{
      * @param element the element to add
     */
     public void push(Square element){
-        squares.add(element);
+        squares.add(0,element);
     }
 
 
@@ -85,7 +85,9 @@ public class MyStack{
      * @return true if the size is 0, false otherwise
      */
     boolean isEmpty()
-    {return squares.size() == 0;}
+    {
+        System.out.println("stackstze "+squares.size());
+        return squares.size() == 0;}
 
     /**
      * Clear out the data structure

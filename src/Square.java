@@ -3,6 +3,7 @@
 public class Square {
 	private int row, col;
 	private char type;
+	private char ogtype;
 	public Square prev;
 
 	/**
@@ -37,6 +38,7 @@ public class Square {
 			default:
 				this.type = '\0';	
 		}
+		ogtype = this.type;
 	}
 
 	public void putWorkList() {
@@ -47,6 +49,11 @@ public class Square {
 	}
 	public void finalPath() {
 		type = 'x';
+	}
+	public void reset() {
+		if (type != ogtype) {
+			type = ogtype;
+		}
 	}
 
 	public int getRow() {
