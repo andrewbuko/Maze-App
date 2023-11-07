@@ -21,7 +21,6 @@ public class Square {
 		this.prev = null;
 		this.row = row;
 		this.col = col;
-		this.prev = null;
 		switch (type) {
 			case 0:
 				this.type = '_';

@@ -30,7 +30,7 @@ public abstract class MazeSolver {
 	//A path from the start to the exit has been found; OR
 	//You determine there is no such path (worklist is now empty)
 	public boolean isSolved() {
-		System.out.println("isempty "+isEmpty()+"!getpath is equal to . nothing"+!getPath().equals(""));
+		System.out.println("isempty "+isEmpty()+"!getpath is equal to nothing "+!getPath().equals(""));
 		return isEmpty() || !getPath().equals("");
 	}
 
@@ -40,24 +40,25 @@ public abstract class MazeSolver {
 	public String getPath() {
 		
 		String path = "";
+		System.out.println(maze.getFinish().prev);
+		if(maze.getFinish().prev != null){
+			//find last square
+			//trace through previous squares from the last sq until you reach beginning
+			//append them to "path"
+			ArrayList<Square> pathlist = new ArrayList<>();
+			Square currentsq = maze.getFinish();
+			while(currentsq != null) {
+				pathlist.add(currentsq);
+				currentsq.finalPath();
+				currentsq = currentsq.prev;
+			}
 
-		//find last square
-		//trace through previous squares from the last sq until you reach beginning
-		//append them to "path"
-		ArrayList<Square> pathlist = new ArrayList<>();
-		Square currentsq = maze.getFinish();
-		while(currentsq != null) {
-			pathlist.add(currentsq);
-			currentsq.finalPath();
-			currentsq = currentsq.prev;
+			Square sq;
+			for (int i = pathlist.size() - 1; i >= 0; i--) {
+				sq = pathlist.get(i);
+				path += sq.toString();
+			}
 		}
-
-		Square sq;
-		for (int i = pathlist.size() - 1; i >= 0; i--) {
-			sq = pathlist.get(i);
-			path += sq.toString();
-		}
-		
 		return path;
 	}
 
