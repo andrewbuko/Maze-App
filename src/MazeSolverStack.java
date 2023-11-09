@@ -1,21 +1,25 @@
 public class MazeSolverStack extends MazeSolver {
     //create an empty worklist
-    private MyStack stack;
+    private MyStack<Square> stack;
+    private Square current;
 
     public MazeSolverStack(Maze maze)
     {
         super(maze);
+        makeEmpty();
+        add(maze.getStart());
+        current = (Square) this.stack.top();
     }
 
 	public void makeEmpty()
     {
-        stack = new MyStack();
+        stack = new MyStack<>();
     }
 
 	//return true if the worklist is empty
 	public boolean isEmpty()
     {
-        return stack.isEmpty();
+        return stack.size() == 0;
     }
 
 	//add the given Square to the worklist
@@ -28,7 +32,7 @@ public class MazeSolverStack extends MazeSolver {
 	//return the "next" item from the worklist
 	public Square next()
     {
-        return stack.pop();
+        return (Square) stack.pop();
     }
 
 
