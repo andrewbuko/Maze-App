@@ -9,11 +9,6 @@ import java.util.*;
 
 public class MyStack{
     private ArrayList<Square> squares;
-    /**
-     * Add an item onto the stack
-     * @param item the data item to add (of type T)
-     */
-
 
     /**
      * Constructs an empty stack.
@@ -28,48 +23,28 @@ public class MyStack{
      *
      * @param element the element to add
     */
-    public void push(Square element){
+    public void push(Square element) {
         squares.add(0,element);
     }
-
-
-
-
 
     /**
         Removes the element from the top of the stack.
         @return the removed element
     */
-    public Object pop(){
+    public Square pop() {
         return squares.remove(0);
     }
-
-
-
-
-
-
-
-    /**
-     * Checks whether this stack is empty.
-     *
-     * @return true if the stack is empty
-    */
-
-    static class Node
-    {
-        public Object data;
-        public Node next;
-    }
-
 
     /**
      * Display the top item from the stack without removing it
      * @return the top item in the stack
      * @throws NoSuchElementException if the stack is empty
      */
-    public Square top() throws NoSuchElementException
+    public Square top() 
     {
+        if (stack.size() == 0) {
+            throw new NoSuchElementException();
+        }
         return squares.get(0);
     }
 
@@ -78,7 +53,9 @@ public class MyStack{
      * @return the number of items in the stack
      */
     public int size()
-    {return squares.size();}
+    {
+        return squares.size();
+    }
 
     /**
      * Determine if the stack is empty
@@ -86,8 +63,9 @@ public class MyStack{
      */
     boolean isEmpty()
     {
-        System.out.println("stackstze "+squares.size());
-        return squares.size() == 0;}
+        System.out.println("stacksize "+squares.size());
+        return squares.size() == 0;
+    }
 
     /**
      * Clear out the data structure
