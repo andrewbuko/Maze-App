@@ -5,7 +5,6 @@ public class MazeSolverStack extends MazeSolver {
     public MazeSolverStack(Maze maze)
     {
         super(maze);
-        stack = new MyStack();
     }
 
 	public void makeEmpty()
@@ -29,7 +28,7 @@ public class MazeSolverStack extends MazeSolver {
 	//return the "next" item from the worklist
 	public Square next()
     {
-        return stack.top();
+        return stack.pop();
     }
 
 
