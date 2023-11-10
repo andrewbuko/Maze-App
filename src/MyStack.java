@@ -9,11 +9,6 @@ import java.util.*;
 
 public class MyStack<T> implements StackADT<T>{
     ArrayList<T> squares;
-    /**
-     * Add an item onto the stack
-     * @param item the data item to add (of type T)
-     */
-
 
     /**
      * Constructs an empty stack.
@@ -32,7 +27,7 @@ public class MyStack<T> implements StackADT<T>{
         squares.add(0,element);
     }
 
-    /**
+  /**
         Removes the element from the top of the stack.
         @return the removed element
     */
@@ -68,7 +63,8 @@ public class MyStack<T> implements StackADT<T>{
      */
     public boolean isEmpty()
     {
-        return squares.size() == 0;}
+        return squares.size() == 0;
+    }
 
     /**
      * Clear out the data structure
