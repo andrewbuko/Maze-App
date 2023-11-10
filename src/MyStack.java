@@ -7,21 +7,15 @@ import java.util.*;
  */
 
 
-public class MyStack{
-    private ArrayList<Square> squares = new ArrayList<Square>();
-    /**
-     * Add an item onto the stack
-     * @param item the data item to add (of type T)
-     */
-
-     private Node first;
+public class MyStack<T> implements StackADT<T>{
+    ArrayList<T> squares;
 
     /**
      * Constructs an empty stack.
     */
     public MyStack()
     {
-        first = null;
+        squares = new ArrayList<>();
     }
 
     /**
@@ -29,49 +23,29 @@ public class MyStack{
      *
      * @param element the element to add
     */
-    public void push(Square element){
-        squares.add(element);
+    public void push(T element){
+        squares.add(0,element);
     }
 
-
-
-
-
-    /**
+  /**
         Removes the element from the top of the stack.
         @return the removed element
     */
-    public Object pop(){
+    public T pop(){
         return squares.remove(0);
     }
-
-
-
-
-
-
-
-    /**
-     * Checks whether this stack is empty.
-     *
-     * @return true if the stack is empty
-    */
-
-    static class Node
-    {
-        public Object data;
-        public Node next;
-    }
-
 
     /**
      * Display the top item from the stack without removing it
      * @return the top item in the stack
      * @throws NoSuchElementException if the stack is empty
      */
-    public Square top() throws NoSuchElementException
+    public T top()
     {
-        return squares.get(0);
+        if (squares.size() == 0)
+            throw new NoSuchElementException();
+        
+            return squares.get(0);
     }
 
     /**
@@ -79,21 +53,25 @@ public class MyStack{
      * @return the number of items in the stack
      */
     public int size()
-    {return squares.size();}
+    {
+        return squares.size();
+    }
 
     /**
      * Determine if the stack is empty
      * @return true if the size is 0, false otherwise
      */
-    boolean isEmpty()
-    {return squares.size() == 0;}
+    public boolean isEmpty()
+    {
+        return squares.size() == 0;
+    }
 
     /**
      * Clear out the data structure
      */
     public void clear()
     {
-        squares = new ArrayList<Square>();
+        squares = new ArrayList<T>();
     }
 
 }

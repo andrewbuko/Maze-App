@@ -1,6 +1,6 @@
 import java.util.NoSuchElementException;
 
-public class MyQueue implements StackADT{
+public class MyQueue implements QueueADT<Square>{
 	/* 
 	 * An implementation of the provided QueueADT interface 
 	 * that is capable of storing an arbitrarily large amount 
@@ -14,7 +14,7 @@ public class MyQueue implements StackADT{
 
 	class Node 
 	{
-		public Object data;
+		public Square data;
 		public Node next;
 	}
 
@@ -27,7 +27,7 @@ public class MyQueue implements StackADT{
      * Add an item to the queue
      * @param item the data item to add (of type T)
      */
-    public void enqueue(Object obj) {
+    public void enqueue(Square obj) {
 		Node nextnode = new Node();
 		nextnode.data = obj;
 		nextnode.next = null;
@@ -47,9 +47,9 @@ public class MyQueue implements StackADT{
      * @return the front item in the queue
      * @throws NoSuchElementException if the queue is empty
      */
-    public Object dequeue() {
+    public Square dequeue() {
 		if (head == null) throw new NoSuchElementException();
-		Object ogdata = head.data;
+		Square ogdata = head.data;
 		head = head.next;
 		return ogdata;
 	}
@@ -59,7 +59,7 @@ public class MyQueue implements StackADT{
      * @return the front item in the queue
      * @throws NoSuchElementException if the queue is empty
      */
-    public Object front() {
+    public Square front() {
 		if (head == null) throw new NoSuchElementException();
 		return head.data;
 	}

@@ -1,8 +1,11 @@
+import java.lang.NullPointerException;
 
 
 public class Square {
 	private int row, col;
 	private char type;
+	private char ogtype;
+	private Square prev;
 
 	/**
 	 *     _ - empty space (0)
@@ -16,6 +19,7 @@ public class Square {
 	 */
 
 	public Square(int row, int col, int type) {
+		this.prev = null;
 		this.row = row;
 		this.col = col;
 		switch (type) {
@@ -34,6 +38,7 @@ public class Square {
 			default:
 				this.type = '\0';	
 		}
+		ogtype = this.type;
 	}
 
 	public void putWorkList() {
@@ -45,6 +50,14 @@ public class Square {
 	public void finalPath() {
 		type = 'x';
 	}
+	public void reset() {
+		if (type != ogtype) {
+			type = ogtype;
+		}
+	}
+	public void setPrev(Square sq) {
+		this.prev = sq;
+	}
 
 	public int getRow() {
 		return row;
@@ -54,6 +67,9 @@ public class Square {
 	}
 	public char getType() {
 		return type;
+	}
+	public Square getPrev() {
+		return this.prev;
 	}
 
 	public String toString() {
